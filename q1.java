@@ -1,12 +1,15 @@
+import java.util.Hashtable;
+
 public class q1 {
 
     public static int[] twoSum(int[] nums, int target) {
-        for(int i = 0; i < nums.length; i++){
-            for(int j = i+1; j < nums.length; j++){
-                if(nums[i] + nums[j] == target){
-                    return new int[] {i, j};
-                }
+
+        Hashtable<Integer, Integer> ht = new Hashtable<Integer, Integer>();
+        for (int i = 0; i < nums.length; i++) {
+            if (ht.containsKey(target - nums[i])) {
+                return new int[] {ht.get(target - nums[i]), i};
             }
+            ht.put(nums[i], i);
         }
         return null;
     }
